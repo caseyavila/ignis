@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class FlameController : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class FlameController : MonoBehaviour
     /* If null, flame is an "ember" */
     public GameObject candle;
     public float speed;
+    public float shrinkTime;
+    public AnimationCurve shrinkCurve;
 
     private Rigidbody rb;
     private Vector3 defaultScale;
@@ -73,19 +76,26 @@ public class FlameController : MonoBehaviour
 
             rb.linearVelocity = velocity;
 
-            Shrink();
+            StartCoroutine(Shrink());
         }
     }
 
-    private void Shrink()
+    private IEnumerator Shrink()
     {
-        Vector3 newScale = currentScale * 0.997f;
+        float time = 0;
+        Vector3 startScale = transform.localScale;
 
-        if (newScale.x < 0) {
-            Destroy(gameObject);
+        while (time < shrinkTime) {
+            if (candle != null) {
+                yield break;
+            }
+
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, shrinkCurve.Evaluate(time / shrinkTime));
+            time += Time.deltaTime;
+            yield return null;
         }
 
-        currentScale = newScale;
-        transform.localScale = newScale;
+        Destroy(gameObject);
+        yield break;
     }
 }

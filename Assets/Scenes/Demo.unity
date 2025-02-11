@@ -938,6 +938,31 @@ MonoBehaviour:
   flickerSpeed: 10
   candle: {fileID: 183715269}
   speed: 5
+  shrinkTime: 1
+  shrinkCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.0000076
+      inSlope: -0.00003521259
+      outSlope: -0.00003521259
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.21666843
+    - serializedVersion: 3
+      time: 0.9999919
+      value: -0.000011514872
+      inSlope: -2.901992
+      outSlope: -2.901992
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.033325527
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!54 &1096791663
 Rigidbody:
   m_ObjectHideFlags: 0
