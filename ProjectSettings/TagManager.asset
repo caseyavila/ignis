@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Candle
+  - WaterDrop
   layers:
   - Default
   - TransparentFX

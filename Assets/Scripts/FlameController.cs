@@ -41,6 +41,10 @@ public class FlameController : MonoBehaviour
             other.gameObject.GetComponent<CandleController>().lit = true;
             currentScale = defaultScale;
         }
+        if (other.CompareTag("WaterDrop"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Flicker()
