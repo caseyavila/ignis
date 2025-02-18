@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Candle
+  - Chandelier
   layers:
   - Default
   - TransparentFX
