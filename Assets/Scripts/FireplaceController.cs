@@ -7,7 +7,6 @@ public class FireplaceController : MonoBehaviour
     public Transform logPosition; // log position
     [SerializeField] string sceneName;
     
-  
     public bool lit;
 
     void Start()

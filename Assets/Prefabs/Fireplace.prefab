@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logPosition: {fileID: 4496476810282645902}
-  sceneName: 
+  sceneName: Level 6
   lit: 0
 --- !u!1 &1729273708563021288
 GameObject:

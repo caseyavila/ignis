@@ -40,9 +40,17 @@ public class FlameController : MonoBehaviour
             candle = other.gameObject;
             other.gameObject.GetComponent<CandleController>().lit = true;
             currentScale = defaultScale;
-        }
+        }else if (other.gameObject.tag == "Chandelier"){
+            candle = other.gameObject;
+            other.gameObject.GetComponent<ChandelierController>().lit = true;
+            currentScale = defaultScale;
 
-        if (other.CompareTag("WaterDrop"))
+        }else if (other.gameObject.tag == "Fireplace"){
+            candle = other.gameObject;
+            other.gameObject.GetComponent<FireplaceController>().lit = true;
+            currentScale = defaultScale;
+
+        }else if (other.CompareTag("WaterDrop"))
         {
             Destroy(gameObject);
         }
@@ -62,9 +70,17 @@ public class FlameController : MonoBehaviour
                 velocity.y = 5;
                 rb.linearVelocity = velocity;
 
-                candle.GetComponent<CandleController>().lit = false;
+                if (candle.tag == "Candle"){
+
+                    candle.GetComponent<CandleController>().lit = false;
+
+                }else if (candle.tag == "Chandelier"){
+ 
+                    candle.GetComponent<ChandelierController>().lit = false;
+                }
 
                 candle = null;
+
             }
         }
     }
@@ -72,7 +88,16 @@ public class FlameController : MonoBehaviour
     private void Move()
     {
         if (candle != null) {
-            transform.position = candle.transform.position + new Vector3(0f, 0.33f, 0f);
+            if (candle.tag == "Candle"){
+                transform.position = candle.transform.position + new Vector3(0f, 0.33f, 0f);
+            }else if (candle.tag == "Chandelier"){
+                Transform wickPosition = candle.GetComponent<ChandelierController>().wickPosition;
+                transform.position = wickPosition.position + new Vector3(0f, 0.2f, 0f);
+            }else if (candle.tag == "Fireplace"){
+                Transform logPosition = candle.GetComponent<FireplaceController>().logPosition;
+                transform.position = logPosition.position + new Vector3(0f, 0.25f, 0f);
+            }
+
         } else {
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
 

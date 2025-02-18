@@ -126,7 +126,7 @@ MonoBehaviour:
   flickerSpeed: 10
   candle: {fileID: 0}
   speed: 5
-  shrinkTime: 1
+  shrinkTime: 2
   shrinkCurve:
     serializedVersion: 2
     m_Curve:
