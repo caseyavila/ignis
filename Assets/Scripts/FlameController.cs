@@ -45,6 +45,11 @@ public class FlameController : MonoBehaviour
             other.gameObject.GetComponent<ChandelierController>().lit = true;
             currentScale = defaultScale;
 
+        }else if (other.gameObject.tag == "Fireplace"){
+            candle = other.gameObject;
+            other.gameObject.GetComponent<FireplaceController>().lit = true;
+            currentScale = defaultScale;
+
         }
     }
 
@@ -60,35 +65,17 @@ public class FlameController : MonoBehaviour
         if (emberAction.triggered) {
             if (candle != null) {
                 
-                Rigidbody candleRb = candle.GetComponent<Rigidbody>();
+                
+                Vector3 velocity = rb.linearVelocity;
+                velocity.y = 5;
+                rb.linearVelocity = velocity;
 
                 if (candle.tag == "Candle"){
-                    Vector3 velocity = rb.linearVelocity;
-                    velocity.y = 5;
-                    rb.linearVelocity = velocity;
 
                     candle.GetComponent<CandleController>().lit = false;
 
                 }else if (candle.tag == "Chandelier"){
-                    // Get the angular velocity (rotational velocity) of the candle
-                    Vector3 angularVelocity = candleRb.angularVelocity;
-
-                    // Get the position of the wick or flame in relation to the candle's position
-                    Transform wickPosition = candle.GetComponent<ChandelierController>().wickPosition;
-                    Vector3 wickOffset = wickPosition.position - candle.transform.position;
-                    Debug.Log("Wick Offset: " + wickOffset);
-
-                    // Calculate the velocity at the end of the rotating arm using angular velocity
-                    Vector3 rotationalVelocity = Vector3.Cross(angularVelocity, wickOffset);
-                    Debug.Log("Rotational Velocity: " + rotationalVelocity);
-
-                    // Add a vertical velocity of 5 to simulate the ember effect
-                    Vector3 flameVelocity = rotationalVelocity + new Vector3(0f, 5f, 0f);
-                    Debug.Log("Flame Velocity: " + flameVelocity);
-
-                    // Apply the resulting velocity to the flame's Rigidbody
-                    rb.linearVelocity = flameVelocity;
-                    Debug.Log("Final Velocity: " + rb.linearVelocity);
+ 
                     candle.GetComponent<ChandelierController>().lit = false;
                 }
 
@@ -106,6 +93,9 @@ public class FlameController : MonoBehaviour
             }else if (candle.tag == "Chandelier"){
                 Transform wickPosition = candle.GetComponent<ChandelierController>().wickPosition;
                 transform.position = wickPosition.position + new Vector3(0f, 0.2f, 0f);
+            }else if (candle.tag == "Fireplace"){
+                Transform logPosition = candle.GetComponent<FireplaceController>().logPosition;
+                transform.position = logPosition.position + new Vector3(0f, 0.25f, 0f);
             }
             
         } else {
