@@ -5,8 +5,7 @@ public class ChandelierController : MonoBehaviour
 {
     public float dampingFactor = 0.95f; // Reduce swinging over time
     public float torqueForce = 10f; // Force applied when lit
-
-
+    public Transform wickPosition; // Wick position inside the chandelier
     
     private InputAction moveAction;
     private Rigidbody rb;
