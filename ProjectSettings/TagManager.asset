@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Candle
   - WaterDrop
+  - Chandelier
   layers:
   - Default
   - TransparentFX
