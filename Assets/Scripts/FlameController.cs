@@ -36,7 +36,7 @@ public class FlameController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Candle") {
+        if (candle == null && other.gameObject.tag == "Candle") {
             candle = other.gameObject;
             other.gameObject.GetComponent<CandleController>().lit = true;
             currentScale = defaultScale;
