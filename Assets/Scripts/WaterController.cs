@@ -5,7 +5,6 @@ public class WaterController : MonoBehaviour
     public GameObject waterPrefab;
     public float waterSpeed;
     public float spawnTime;
-    public float yBoundary;
 
     public Transform spawnPoint;
 
@@ -29,7 +28,6 @@ public class WaterController : MonoBehaviour
         if (dropletScript != null)
         {
             dropletScript.speed = waterSpeed;
-            dropletScript.yBoundary = yBoundary;
         }
     }
 }
