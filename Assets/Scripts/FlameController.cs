@@ -40,15 +40,18 @@ public class FlameController : MonoBehaviour
             candle = other.gameObject;
             other.gameObject.GetComponent<CandleController>().lit = true;
             currentScale = defaultScale;
-        }else if (other.gameObject.tag == "Chandelier"){
-            candle = other.gameObject;
-            other.gameObject.GetComponent<ChandelierController>().lit = true;
-            currentScale = defaultScale;
+        }
+
 
         }else if (other.gameObject.tag == "Fireplace"){
             candle = other.gameObject;
             other.gameObject.GetComponent<FireplaceController>().lit = true;
             currentScale = defaultScale;
+
+
+        } else if (other.CompareTag("WaterDrop"))
+        {
+            Destroy(gameObject);
 
         }
     }
@@ -61,14 +64,13 @@ public class FlameController : MonoBehaviour
 
     private void Ember()
     {
-        
         if (emberAction.triggered) {
             if (candle != null) {
-                
-                
+
                 Vector3 velocity = rb.linearVelocity;
                 velocity.y = 5;
                 rb.linearVelocity = velocity;
+
 
                 if (candle.tag == "Candle"){
 
@@ -79,6 +81,7 @@ public class FlameController : MonoBehaviour
                     candle.GetComponent<ChandelierController>().lit = false;
                 }
 
+
                 candle = null;
             }
         }
@@ -87,6 +90,7 @@ public class FlameController : MonoBehaviour
     private void Move()
     {
         if (candle != null) {
+
 
             if (candle.tag == "Candle"){
                 transform.position = candle.transform.position + new Vector3(0f, 0.33f, 0f);
@@ -98,6 +102,7 @@ public class FlameController : MonoBehaviour
                 transform.position = logPosition.position + new Vector3(0f, 0.25f, 0f);
             }
             
+
         } else {
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
