@@ -1,32 +1,35 @@
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
 public class WaterController : MonoBehaviour
 {
-    public float flickerSpeed;
-    public float speed;
-    private Vector3 currentScale;
+    public GameObject waterPrefab;
+    public float waterSpeed;
+    public float spawnTime;
+    public float yBoundary;
 
-    void Start()
-    {
-        
-    }
+    public Transform spawnPoint;
 
-    // Update is called once per frame
+    private float _timeSinceLastSpawn = 0f;
+
     void Update()
     {
-        Flicker();
-        Move();
-    }
-    private void Flicker()
-    {
-        transform.localScale = currentScale +
-            (Vector3.one * 0.25f * (Mathf.PerlinNoise(0, Time.time * flickerSpeed) - 0.5f));
+        _timeSinceLastSpawn += Time.deltaTime;
+        if (_timeSinceLastSpawn >= spawnTime)
+        {
+            _timeSinceLastSpawn = 0f;
+            SpawnDroplet();
+        }
     }
 
-    private void Move()
+    private void SpawnDroplet()
     {
-        
+        GameObject newDroplet = Instantiate(waterPrefab, spawnPoint.position, Quaternion.identity);
+        WaterDroplet dropletScript = newDroplet.GetComponent<WaterDroplet>();
+
+        if (dropletScript != null)
+        {
+            dropletScript.speed = waterSpeed;
+            dropletScript.yBoundary = yBoundary;
+        }
     }
 }
-
