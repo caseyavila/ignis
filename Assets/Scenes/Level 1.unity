@@ -1648,10 +1648,6 @@ PrefabInstance:
       propertyPath: candle
       value: 
       objectReference: {fileID: 183715269}
-    - target: {fileID: 1568331195938376518, guid: 96e9105162dea408dac9591c1d63d26d, type: 3}
-      propertyPath: shrinkTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4090997462851706898, guid: 96e9105162dea408dac9591c1d63d26d, type: 3}
       propertyPath: m_Name
       value: Flame
