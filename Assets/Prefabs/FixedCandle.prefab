@@ -113,7 +113,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &5185509446804957900
 BoxCollider:
@@ -184,6 +184,10 @@ PrefabInstance:
     - target: {fileID: 3770457873690099471, guid: 56f5dbbdc473a4ff39578a30c16f3ed2, type: 3}
       propertyPath: speed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4788183717302050833, guid: 56f5dbbdc473a4ff39578a30c16f3ed2, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 7330165728842208435, guid: 56f5dbbdc473a4ff39578a30c16f3ed2, type: 3}
       propertyPath: m_LocalPosition.x
