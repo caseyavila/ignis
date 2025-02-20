@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FlameController : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class FlameController : MonoBehaviour
         Ember();
     }
 
+
     void OnTriggerEnter(Collider other) {
         if (candle == null && other.gameObject.tag == "Candle") {
             candle = other.gameObject;
@@ -52,7 +54,8 @@ public class FlameController : MonoBehaviour
 
         }else if (other.CompareTag("WaterDrop"))
         {
-            Destroy(gameObject);
+            StartCoroutine(Restart());
+            
         }
     }
 
@@ -125,7 +128,20 @@ public class FlameController : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        
+        StartCoroutine(Restart());
+        
         yield break;
     }
+
+
+    IEnumerator Restart() {
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+
+        while (!asyncLoad.isDone) {
+            yield return null;
+        }
+    }
 }
+
