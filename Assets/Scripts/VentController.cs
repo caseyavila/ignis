@@ -1,10 +1,67 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEditor;
 
 public class VentController : MonoBehaviour
 {
     public float forceStrength = 10f; // Adjustable force strength
+
+    public float onDuration = 1f;
+    public float offDuration = 1f;
+
+    public bool ventOn = true;
+
+    public float timer = 0;
+
+    public ParticleSystem smokeEffect;
+
+    private Collider ventCollider;
+
+    void Start(){
+
+        ventCollider = GetComponent<Collider>();
+
+    }
+
+    void Update(){
+
+        timer += Time.deltaTime;
+
+        if (ventOn){
+
+            if (timer > onDuration){
+
+                timer = 0f;
+                ventCollider.enabled = false;
+                ToggleSmoke(false);
+                ventOn = false;
+
+            }
+
+        }else if (!ventOn){
+
+            if (timer > offDuration){
+                timer = 0f;
+                ventCollider.enabled = true;
+                ToggleSmoke(true);
+                ventOn = true;
+                
+            }
+
+        }
+
+        
+    }
+
+    void ToggleSmoke(bool state)
+    {
+        if (smokeEffect != null)
+        {
+            var emission = smokeEffect.emission;
+            emission.enabled = state;
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -13,7 +70,7 @@ public class VentController : MonoBehaviour
         if (other.gameObject.CompareTag("Lamp"))
         {
             rb.AddForce(Vector3.up * forceStrength);
-            Debug.Log($"{other.gameObject.name} is being pushed upward by the vent.");
+
         }
         else if (other.gameObject.CompareTag("Candle"))
         {
@@ -25,7 +82,7 @@ public class VentController : MonoBehaviour
             else
             {
                 rb.AddForce(Vector3.up * forceStrength);
-                Debug.Log($"{other.gameObject.name} is being pushed upward by the vent.");
+
             }
         }
     }

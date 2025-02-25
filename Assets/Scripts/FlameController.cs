@@ -42,17 +42,17 @@ public class FlameController : MonoBehaviour
             candle = other.gameObject;
             other.gameObject.GetComponent<CandleController>().lit = true;
             currentScale = defaultScale;
-        }else if (other.gameObject.tag == "Chandelier"){
+        }else if (candle == null && other.gameObject.tag == "Chandelier"){
             candle = other.gameObject;
             other.gameObject.GetComponent<ChandelierController>().lit = true;
             currentScale = defaultScale;
 
-        }else if (other.gameObject.tag == "Fireplace"){
+        }else if (candle == null && other.gameObject.tag == "Fireplace"){
             candle = other.gameObject;
             other.gameObject.GetComponent<FireplaceController>().lit = true;
             currentScale = defaultScale;
 
-        }else if (other.gameObject.tag == "Lamp"){
+        }else if (candle == null && other.gameObject.tag == "Lamp"){
             candle = other.gameObject;
             other.gameObject.GetComponent<LampController>().lit = true;
             currentScale = defaultScale;
@@ -152,7 +152,22 @@ public class FlameController : MonoBehaviour
     IEnumerator Restart() {
 
         GetComponent<Renderer>().enabled = false;
-        
+        if (candle != null) {
+            if (candle.tag == "Candle"){
+
+                candle.GetComponent<CandleController>().lit = false;
+
+            }else if (candle.tag == "Chandelier"){
+    
+                candle.GetComponent<ChandelierController>().lit = false;
+
+            }else if (candle.tag == "Lamp"){
+    
+                candle.GetComponent<LampController>().lit = false;
+                
+            }
+        }
+
         yield return new WaitForSeconds(1);
 
 
