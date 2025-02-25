@@ -52,10 +52,18 @@ public class FlameController : MonoBehaviour
             other.gameObject.GetComponent<FireplaceController>().lit = true;
             currentScale = defaultScale;
 
+        }else if (other.gameObject.tag == "Lamp"){
+            candle = other.gameObject;
+            other.gameObject.GetComponent<LampController>().lit = true;
+            currentScale = defaultScale;
         }else if (other.CompareTag("WaterDrop"))
         {
             StartCoroutine(Restart());
             
+        }else if ((candle == null || !candle.CompareTag("Lamp")) && other.CompareTag("Wind")){
+
+            StartCoroutine(Restart());
+
         }
     }
 
@@ -80,6 +88,9 @@ public class FlameController : MonoBehaviour
                 }else if (candle.tag == "Chandelier"){
  
                     candle.GetComponent<ChandelierController>().lit = false;
+                }else if (candle.tag == "Lamp"){
+ 
+                    candle.GetComponent<LampController>().lit = false;
                 }
 
                 candle = null;
@@ -99,6 +110,9 @@ public class FlameController : MonoBehaviour
             }else if (candle.tag == "Fireplace"){
                 Transform logPosition = candle.GetComponent<FireplaceController>().logPosition;
                 transform.position = logPosition.position + new Vector3(0f, 0.25f, 0f);
+            }else if (candle.tag == "Lamp"){
+                Transform wickPosition = candle.GetComponent<LampController>().wickPosition;
+                transform.position = wickPosition.position + new Vector3(0f, 0.2f, 0f);
             }
 
         } else {
@@ -136,6 +150,11 @@ public class FlameController : MonoBehaviour
 
 
     IEnumerator Restart() {
+
+        GetComponent<Renderer>().enabled = false;
+        
+        yield return new WaitForSeconds(1);
+
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 
