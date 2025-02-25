@@ -8,6 +8,8 @@ TagManager:
   - WaterDrop
   - Chandelier
   - Fireplace
+  - Lamp
+  - Wind
   layers:
   - Default
   - TransparentFX
