@@ -102,6 +102,8 @@ public class FlameController : MonoBehaviour
     private void Move()
     {
         if (candle != null) {
+            rb.linearVelocity = Vector3.zero;
+
             if (candle.tag == "Candle"){
                 transform.position = candle.transform.position + new Vector3(0f, 0.33f, 0f);
             }else if (candle.tag == "Chandelier"){
