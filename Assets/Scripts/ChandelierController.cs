@@ -48,7 +48,7 @@ public class ChandelierController : MonoBehaviour
         rb.AddTorque(Vector3.forward * torque);
         
         if (moveInput.x != 0){
-            audioManager.PlayQuietSFX(audioManager.squeak);
+            //audioManager.PlayQuietSFX(audioManager.squeak);
         }
 
 
