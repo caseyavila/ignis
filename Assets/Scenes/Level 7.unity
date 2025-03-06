@@ -237,11 +237,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05017dad8c45de74e91c1ac0ca4f3521, type: 3}
---- !u!1 &183715269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3141350730476697697, guid: 56f5dbbdc473a4ff39578a30c16f3ed2, type: 3}
-  m_PrefabInstance: {fileID: 1679993699}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &193779232
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +716,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56f5dbbdc473a4ff39578a30c16f3ed2, type: 3}
+--- !u!1 &369490968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3141350730476697697, guid: 56f5dbbdc473a4ff39578a30c16f3ed2, type: 3}
+  m_PrefabInstance: {fileID: 369490967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +1914,7 @@ PrefabInstance:
     - target: {fileID: 1568331195938376518, guid: 96e9105162dea408dac9591c1d63d26d, type: 3}
       propertyPath: candle
       value: 
-      objectReference: {fileID: 183715269}
+      objectReference: {fileID: 369490968}
     - target: {fileID: 4090997462851706898, guid: 96e9105162dea408dac9591c1d63d26d, type: 3}
       propertyPath: m_Name
       value: Flame
