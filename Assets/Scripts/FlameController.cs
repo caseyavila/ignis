@@ -39,9 +39,9 @@ public class FlameController : MonoBehaviour
 
     void Update()
     {
-        Flicker();
         Move();
         Ember();
+        Flicker();
     }
 
 
@@ -84,7 +84,7 @@ public class FlameController : MonoBehaviour
     private void Flicker()
     {
         transform.localScale = currentScale +
-            (Vector3.one * 0.25f * (Mathf.PerlinNoise(0, Time.time * flickerSpeed) - 0.5f));
+            (Vector3.up * 0.25f * (Mathf.PerlinNoise(0, Time.time * flickerSpeed) - 0.5f));
     }
 
     private void Ember()
@@ -154,7 +154,8 @@ public class FlameController : MonoBehaviour
                 yield break;
             }
 
-            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, shrinkCurve.Evaluate(time / shrinkTime));
+            currentScale = Vector3.Lerp(startScale, Vector3.zero, shrinkCurve.Evaluate(time / shrinkTime));
+            Flicker();
             time += Time.deltaTime;
             yield return null;
         }
