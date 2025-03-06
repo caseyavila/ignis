@@ -4,7 +4,7 @@ public class NewPlate : MonoBehaviour
 {
     public AirflowController airflowController;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (airflowController != null)
         {
