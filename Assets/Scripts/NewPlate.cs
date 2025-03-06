@@ -12,6 +12,7 @@ public class NewPlate : MonoBehaviour
             airflowController.GetComponent<Collider>().enabled = true;
             airflowController.ToggleMist(true);
             airflowController.soundManager.PlayWind(true);
+            
         }
     }
 

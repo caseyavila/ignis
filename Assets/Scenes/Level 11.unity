@@ -2171,6 +2171,11 @@ Transform:
   - {fileID: 275673276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1888141607 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8566900721684692916, guid: 4776df3f999bf490da99c2958a54397f, type: 3}
+  m_PrefabInstance: {fileID: 2014645517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957491467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,7 +2378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airflowStrength: 50
   isActive: 0
-  mistEffect: {fileID: 0}
+  mistEffect: {fileID: 1888141607}
   soundManager: {fileID: 0}
 --- !u!1 &2120742587
 GameObject:
