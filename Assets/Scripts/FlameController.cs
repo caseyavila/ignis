@@ -8,7 +8,8 @@ public class FlameController : MonoBehaviour
     public float flickerSpeed;
     /* If null, flame is an "ember" */
     public GameObject candle;
-    public float speed;
+    public float acceleration;
+    public float maxSpeed;
     public float shrinkTime;
     public AnimationCurve shrinkCurve;
 
@@ -22,7 +23,6 @@ public class FlameController : MonoBehaviour
 
     void Awake()
     {
-    
        audioManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
     }
 
@@ -42,6 +42,19 @@ public class FlameController : MonoBehaviour
         Move();
         Ember();
         Flicker();
+        Rotate();
+    }
+
+    void Rotate()
+    {
+        Vector3 v = rb.linearVelocity;
+
+        if (v.magnitude == 0) {
+            v = Vector3.down;
+        }
+
+        transform.rotation = Quaternion.LookRotation(-v);
+        transform.Rotate(90, 0, 0);
     }
 
 
@@ -135,9 +148,20 @@ public class FlameController : MonoBehaviour
         } else {
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
-            Vector3 velocity = rb.linearVelocity;
-            velocity.x = moveInput.x * speed;
+            if (moveInput.x == 0) {
+                if (rb.linearVelocity.x > 0) {
+                    rb.AddForce(Vector3.left, ForceMode.Acceleration);
+                } else if (rb.linearVelocity.x < 0) {
+                    rb.AddForce(Vector3.right, ForceMode.Acceleration);
+                }
+            } else {
+                Vector3 moveVector = new Vector3(moveInput.x, 0, 0);
+                rb.AddForce(moveVector * acceleration, ForceMode.Acceleration);
+            }
 
+
+            Vector3 velocity = rb.linearVelocity;
+            velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
             rb.linearVelocity = velocity;
 
             StartCoroutine(Shrink());
