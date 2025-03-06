@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class CandleController : MonoBehaviour
 {
     public float speed = 5;
+    public float acceleration;
     public bool lit;
 
     private InputAction moveAction;
