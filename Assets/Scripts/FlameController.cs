@@ -91,6 +91,7 @@ public class FlameController : MonoBehaviour
         }else if (other.CompareTag("WaterDrop"))
         {
             StartCoroutine(Restart());
+            audioManager.PlaySFX(audioManager.sizzle);
             
         }else if ((candle == null || !candle.CompareTag("Lamp")) && other.CompareTag("Wind")){
 
