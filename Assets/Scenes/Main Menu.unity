@@ -5380,7 +5380,7 @@ MonoBehaviour:
   SFXSource: {fileID: 1524977744}
   QuietSFXSource: {fileID: 1153225355}
   background: {fileID: 8300000, guid: cd4981d341256424a9efd0070cdb851a, type: 3}
-  rain: {fileID: 8300000, guid: bb2dffacdb9e744d1b5e178240a462d3, type: 3}
+  rain: {fileID: 8300000, guid: da7d2c06359684870880da11b70baa48, type: 3}
   fireBackground: {fileID: 8300000, guid: f45eba95be9224db2bb0c3d2c6f0214b, type: 3}
   wind: {fileID: 8300000, guid: 286da2b98ebc140d694e2060e99dd038, type: 3}
   ignite: {fileID: 8300000, guid: 57375a843beb547f68e4536a7aea605b, type: 3}
