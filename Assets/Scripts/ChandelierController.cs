@@ -11,6 +11,14 @@ public class ChandelierController : MonoBehaviour
     private Rigidbody rb;
     public bool lit;
 
+    MusicManager audioManager;
+
+    void Awake()
+    {
+    
+       audioManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
+    }
+
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -32,11 +40,16 @@ public class ChandelierController : MonoBehaviour
 
     void ApplySwingForce()
     {
+        
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
         // Apply torque for a back-and-forth swinging motion
         float torque = torqueForce * moveInput.x;
         rb.AddTorque(Vector3.forward * torque);
+        
+        if (moveInput.x != 0){
+            audioManager.PlayQuietSFX(audioManager.squeak);
+        }
 
 
     }

@@ -18,6 +18,14 @@ public class FlameController : MonoBehaviour
     private InputAction moveAction;
     private InputAction emberAction;
 
+    MusicManager audioManager;
+
+    void Awake()
+    {
+    
+       audioManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
+    }
+
     void Start()
     {
         defaultScale = transform.localScale;
@@ -42,20 +50,26 @@ public class FlameController : MonoBehaviour
             candle = other.gameObject;
             other.gameObject.GetComponent<CandleController>().lit = true;
             currentScale = defaultScale;
+
+            audioManager.PlaySFX(audioManager.ignite);
+
         }else if (candle == null && other.gameObject.tag == "Chandelier"){
             candle = other.gameObject;
             other.gameObject.GetComponent<ChandelierController>().lit = true;
             currentScale = defaultScale;
+            audioManager.PlaySFX(audioManager.ignite);
 
         }else if (candle == null && other.gameObject.tag == "Fireplace"){
             candle = other.gameObject;
             other.gameObject.GetComponent<FireplaceController>().lit = true;
             currentScale = defaultScale;
+            audioManager.PlaySFX(audioManager.ignite);
 
         }else if (candle == null && other.gameObject.tag == "Lamp"){
             candle = other.gameObject;
             other.gameObject.GetComponent<LampController>().lit = true;
             currentScale = defaultScale;
+            audioManager.PlaySFX(audioManager.ignite);
         }else if (other.CompareTag("WaterDrop"))
         {
             StartCoroutine(Restart());
@@ -76,6 +90,7 @@ public class FlameController : MonoBehaviour
     private void Ember()
     {
         if (emberAction.triggered) {
+            audioManager.PlaySFX(audioManager.sizzle);
             if (candle != null) {
                 Vector3 velocity = rb.linearVelocity;
                 velocity.y = 5;
@@ -169,6 +184,8 @@ public class FlameController : MonoBehaviour
                 
             }
         }
+
+        
 
         yield return new WaitForSeconds(1);
 

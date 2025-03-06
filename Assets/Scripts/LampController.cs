@@ -26,8 +26,9 @@ public class LampController : MonoBehaviour
 
     private void Move() {
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
-
         Vector3 velocity = rb.linearVelocity;
+
+        
         velocity.x = moveInput.x * speed;
 
         rb.linearVelocity = velocity;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 
 public class VentController : MonoBehaviour
@@ -18,40 +19,48 @@ public class VentController : MonoBehaviour
 
     private Collider ventCollider;
 
-    void Start(){
+    MusicManager audioManager;
 
-        ventCollider = GetComponent<Collider>();
 
+    private HashSet<GameObject> triggeredObjects = new HashSet<GameObject>(); //used to make sure whoosh sound effect is only played once
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
     }
 
-    void Update(){
+    void Start()
+    {
+        ventCollider = GetComponent<Collider>();
+    }
 
+    
+    void Update()
+    {
         timer += Time.deltaTime;
 
-        if (ventOn){
-
-            if (timer > onDuration){
-
+        if (ventOn)
+        {
+            if (timer > onDuration)
+            {
                 timer = 0f;
                 ventCollider.enabled = false;
                 ToggleSmoke(false);
                 ventOn = false;
-
+                audioManager.PlayWind(false); 
             }
-
-        }else if (!ventOn){
-
-            if (timer > offDuration){
+        }
+        else
+        {
+            if (timer > offDuration)
+            {
                 timer = 0f;
                 ventCollider.enabled = true;
                 ToggleSmoke(true);
                 ventOn = true;
-                
+                audioManager.PlayWind(true); 
             }
-
         }
-
-        
     }
 
     void ToggleSmoke(bool state)
@@ -67,25 +76,41 @@ public class VentController : MonoBehaviour
     {
         Rigidbody rb = other.attachedRigidbody;
 
-        if (other.gameObject.CompareTag("Lamp"))
+        if (rb != null) // Ensure the object has a Rigidbody
         {
-            rb.AddForce(Vector3.up * forceStrength);
-
-        }
-        else if (other.gameObject.CompareTag("Candle"))
-        {
-            if (other.gameObject.GetComponent<FlameController>() != null)
+            if (!triggeredObjects.Contains(other.gameObject))
             {
-                // If the candle is not a lamp, restart the game
-                StartCoroutine(Restart());
+                audioManager.PlayQuietSFX(audioManager.whoosh);
+                triggeredObjects.Add(other.gameObject);
             }
-            else
-            {
-                rb.AddForce(Vector3.up * forceStrength);
 
+            Vector3 ventDirection = transform.up * forceStrength; // Use the vent's local up direction
+
+            if (other.gameObject.CompareTag("Lamp"))
+            {
+                rb.AddForce(ventDirection);
+                Debug.Log($"Applying force {ventDirection} to Lamp {other.gameObject.name}");
+            }
+            else if (other.gameObject.CompareTag("Candle"))
+            {
+                if (other.gameObject.GetComponent<FlameController>() != null)
+                {
+                    StartCoroutine(Restart());
+                }
+                else
+                {
+                    rb.AddForce(ventDirection);
+                }
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Remove object from set when it exits the trigger so it can trigger the sound again next time
+        triggeredObjects.Remove(other.gameObject);
+    }
+
 
     private IEnumerator Restart()
     {
