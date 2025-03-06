@@ -8,8 +8,8 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         Vector3 newPos = new Vector3(flameTransform.position.x,
-                                     flameTransform.position.y,
+                                     transform.position.y,
                                      transform.position.z);
-        transform.position = newPos;
+        transform.position = Vector3.Lerp(transform.position, newPos, 5 * Time.deltaTime);
     }
 }
