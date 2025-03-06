@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 51443228}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: WaterDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1369,6 +1369,7 @@ MonoBehaviour:
   sizzle: {fileID: 8300000, guid: 7859ffe4faaf84879ba31f4a3f8f50a7, type: 3}
   whoosh: {fileID: 8300000, guid: 8d0c5eb4818a34ec3b48e4d372206c25, type: 3}
   squeak: {fileID: 8300000, guid: a5008e02fd58e469a8448740dd6cbedf, type: 3}
+  drop: {fileID: 0}
 --- !u!4 &984128294
 Transform:
   m_ObjectHideFlags: 0
