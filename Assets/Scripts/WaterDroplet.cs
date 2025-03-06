@@ -11,12 +11,20 @@ public class WaterDroplet : MonoBehaviour
     private Vector3 originalScale;
     private Collider dropletCollider;
 
+    MusicManager audioManager;
+
+    void Awake()
+    {
+       audioManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
+    }
+
     private void Start()
     {
         originalScale = transform.localScale;
         dropletCollider = GetComponent<Collider>();
 
         StartCoroutine(EnableTriggerAfterDelay());
+        audioManager.PlayQuietSFX(audioManager.drop);
     }
 
     private void Update()

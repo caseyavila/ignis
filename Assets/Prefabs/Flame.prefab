@@ -125,9 +125,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flickerSpeed: 10
   candle: {fileID: 0}
-  acceleration: 5
+  acceleration: 40
   maxSpeed: 5
-  shrinkTime: 2
+  shrinkTime: 1.5
   shrinkCurve:
     serializedVersion: 2
     m_Curve:

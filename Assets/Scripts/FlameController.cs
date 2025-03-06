@@ -37,9 +37,14 @@ public class FlameController : MonoBehaviour
         candle.GetComponent<CandleController>().lit = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move();
+    }
+
+    void Update()
+    {
+        MoveToCandle();
         Ember();
         Flicker();
         Rotate();
@@ -86,6 +91,7 @@ public class FlameController : MonoBehaviour
         }else if (other.CompareTag("WaterDrop"))
         {
             StartCoroutine(Restart());
+            audioManager.PlaySFX(audioManager.sizzle);
             
         }else if ((candle == null || !candle.CompareTag("Lamp")) && other.CompareTag("Wind")){
 
@@ -127,7 +133,7 @@ public class FlameController : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void MoveToCandle()
     {
         if (candle != null) {
             rb.linearVelocity = Vector3.zero;
@@ -144,15 +150,19 @@ public class FlameController : MonoBehaviour
                 Transform wickPosition = candle.GetComponent<LampController>().wickPosition;
                 transform.position = wickPosition.position + new Vector3(0f, 0.2f, 0f);
             }
+        }
+    }
 
-        } else {
+    private void Move()
+    {
+        if (candle == null) {
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
             if (moveInput.x == 0) {
                 if (rb.linearVelocity.x > 0) {
-                    rb.AddForce(Vector3.left, ForceMode.Acceleration);
+                    rb.AddForce(Vector3.left * 10, ForceMode.Acceleration);
                 } else if (rb.linearVelocity.x < 0) {
-                    rb.AddForce(Vector3.right, ForceMode.Acceleration);
+                    rb.AddForce(Vector3.right * 10, ForceMode.Acceleration);
                 }
             } else {
                 Vector3 moveVector = new Vector3(moveInput.x, 0, 0);
