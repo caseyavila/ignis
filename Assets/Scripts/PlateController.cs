@@ -6,7 +6,8 @@ public class PressurePlate : MonoBehaviour
     public GameObject[] candles;
     public Vector3[] targetPositions;
     private Vector3[] defaultPositions;
-    public float moveDuration = 2f;
+    public float moveToTargetDuration = 2f;
+    public float moveToDefaultDuration = 2f;
     private bool isActivated = false;
     private int objectsOnPlate = 0;
     private Coroutine moveCandlesCoroutine;
@@ -22,36 +23,29 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Candle"))
-        {
-            objectsOnPlate++;
+        objectsOnPlate++;
 
-            if (!isActivated)
-            {
-                isActivated = true;
-                if (moveCandlesCoroutine != null) StopCoroutine(moveCandlesCoroutine);
-                moveCandlesCoroutine = StartCoroutine(MoveCandles(targetPositions));
-            }
+        if (!isActivated)
+        {
+            isActivated = true;
+            if (moveCandlesCoroutine != null) StopCoroutine(moveCandlesCoroutine);
+            moveCandlesCoroutine = StartCoroutine(MoveCandles(targetPositions, moveToTargetDuration));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Candle"))
+        objectsOnPlate--;
+
+        if (objectsOnPlate <= 0)
         {
-            objectsOnPlate--;
-
-            if (objectsOnPlate <= 0)
-            {
-                isActivated = false;
-
-                if (moveCandlesCoroutine != null) StopCoroutine(moveCandlesCoroutine);
-                moveCandlesCoroutine = StartCoroutine(MoveCandles(defaultPositions));
-            }
+            isActivated = false;
+            if (moveCandlesCoroutine != null) StopCoroutine(moveCandlesCoroutine);
+            moveCandlesCoroutine = StartCoroutine(MoveCandles(defaultPositions, moveToDefaultDuration));
         }
     }
 
-    private IEnumerator MoveCandles(Vector3[] targetPositions)
+    private IEnumerator MoveCandles(Vector3[] targetPositions, float duration)
     {
         float elapsedTime = 0f;
         Vector3[] startPositions = new Vector3[candles.Length];
@@ -61,10 +55,10 @@ public class PressurePlate : MonoBehaviour
             startPositions[i] = candles[i].transform.position;
         }
 
-        while (elapsedTime < moveDuration)
+        while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float t = elapsedTime / moveDuration;
+            float t = elapsedTime / duration;
 
             for (int i = 0; i < candles.Length; i++)
             {

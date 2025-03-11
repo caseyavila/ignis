@@ -621,8 +621,9 @@ MonoBehaviour:
   candles:
   - {fileID: 1939927056}
   targetPositions:
-  - {x: -6, y: 0, z: 0}
-  moveDuration: 2
+  - {x: -6, y: 0, z: -0.6}
+  moveToTargetDuration: 2
+  moveToDefaultDuration: 5
 --- !u!1 &621068108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,7 +2133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1885721990371923891, guid: 05017dad8c45de74e91c1ac0ca4f3521, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.578
       objectReference: {fileID: 0}
     - target: {fileID: 1885721990371923891, guid: 05017dad8c45de74e91c1ac0ca4f3521, type: 3}
       propertyPath: m_LocalRotation.w
