@@ -24,6 +24,7 @@ public class FlameController : MonoBehaviour
     void Awake()
     {
        audioManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
+       Time.timeScale = 1;
     }
 
     void Start()
