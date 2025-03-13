@@ -25,7 +25,7 @@ public class ChandelierController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (lit)
         {
