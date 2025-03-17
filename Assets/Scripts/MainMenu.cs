@@ -18,6 +18,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void HaungsMode()
+    {
+        PlayerPrefs.SetInt("ReachedIndex", 15);
+        PlayerPrefs.SetInt("UnlockedLevel", 15);
+        PlayerPrefs.Save();
+    }
+
     IEnumerator NextScene() {
         yield return new WaitForSeconds(1);
 

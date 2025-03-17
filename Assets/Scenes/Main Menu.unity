@@ -3634,7 +3634,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1628184007}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: HaungsMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4267,6 +4267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7bf90819116f4acfb7cc719d48899a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttons: []
+  levelButtons: {fileID: 874527464}
 --- !u!1 &1471448077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6140,7 +6142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SETTINGS
+  m_text: HAUNGS MODE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6167,8 +6169,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
