@@ -34,8 +34,6 @@ public class MainMenu : MonoBehaviour
     {
         int currUnlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        Debug.Log(currUnlocked);
-
         if (PlayerPrefs.GetInt("Haungs", 0) == 0) {
             PlayerPrefs.SetInt("UnlockedLevel", 15);
             PlayerPrefs.SetInt("HaungsScratch", currUnlocked);
