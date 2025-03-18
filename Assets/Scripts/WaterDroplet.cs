@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class WaterDroplet : MonoBehaviour
 {
@@ -51,8 +52,16 @@ public class WaterDroplet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(0.05f);
         Destroy(gameObject);
     }
+
     private IEnumerator EnableTriggerAfterDelay()
     {
         if (dropletCollider != null)
