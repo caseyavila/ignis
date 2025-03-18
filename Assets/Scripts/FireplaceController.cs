@@ -11,8 +11,7 @@ public class FireplaceController : MonoBehaviour
 
     void Update()
     {
-         if (lit)
-        {
+        if (lit) {
             StartCoroutine(NextScene());
             UnlockNewLevel();
         }
@@ -20,12 +19,11 @@ public class FireplaceController : MonoBehaviour
 
     void UnlockNewLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
-        {
-            PlayerPrefs.SetInt("ReachedIndex",SceneManager.GetActiveScene().buildIndex + 1);
-            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel",1)+1);
-            PlayerPrefs.Save();
+        int currLevel = SceneManager.GetActiveScene().buildIndex;
 
+        if (currLevel == PlayerPrefs.GetInt("UnlockedLevel", 1)) {
+            PlayerPrefs.SetInt("UnlockedLevel", currLevel + 1);
+            PlayerPrefs.Save();
         }
     }
 
