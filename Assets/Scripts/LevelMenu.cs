@@ -8,9 +8,8 @@ public class LevelMenu : MonoBehaviour
     public Button[] buttons;
     public GameObject levelButtons;
 
-    private void Awake()
+    private void OnEnable()
     {
-
         ButtonsToArray();
         
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
@@ -24,13 +23,12 @@ public class LevelMenu : MonoBehaviour
         {
             buttons[i].interactable = true;
         }
-    
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void OpenLevel(int levelId){
         string levelName = "Level " + levelId;
         StartCoroutine(NextScene(levelName));
-
     }
 
     void ButtonsToArray()
@@ -42,7 +40,6 @@ public class LevelMenu : MonoBehaviour
         {
             buttons[i] = levelButtons.transform.GetChild(i).gameObject.GetComponent<Button>();
         }
-
     }
 
 

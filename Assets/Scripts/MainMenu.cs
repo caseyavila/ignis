@@ -7,16 +7,13 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] string sceneName;
-    private static bool haungs;
 
     void Update() {
         if (GetComponent<Image>() == null) {
             return;
         }
 
-        Debug.Log(haungs);
-
-        if (haungs) {
+        if (PlayerPrefs.GetInt("Haungs", 0) == 1) {
             GetComponent<Image>().color = new Color32(130, 130, 130, 255);
         } else {
             GetComponent<Image>().color = new Color32(245, 245, 245, 255);
@@ -35,18 +32,20 @@ public class MainMenu : MonoBehaviour
 
     public void HaungsMode()
     {
-        Debug.Log("HI");
         int currUnlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        if (!haungs) {
+        Debug.Log(currUnlocked);
+
+        if (PlayerPrefs.GetInt("Haungs", 0) == 0) {
             PlayerPrefs.SetInt("UnlockedLevel", 15);
             PlayerPrefs.SetInt("HaungsScratch", currUnlocked);
+            PlayerPrefs.SetInt("Haungs", 1);
         } else {
             PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("HaungsScratch", 1));
+            PlayerPrefs.SetInt("Haungs", 0);
         }
 
         PlayerPrefs.Save();
-        haungs = !haungs;
     }
 
     IEnumerator NextScene() {
@@ -58,6 +57,4 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
     }
-    
-
 }
