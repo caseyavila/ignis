@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    public static MusicManager instance = null;
+
     [Header("Audio Source")]
     [SerializeField] AudioSource backgroundSource;
     [SerializeField] AudioSource rainSource;
@@ -26,7 +28,14 @@ public class MusicManager : MonoBehaviour
    
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        if (instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+
+        DontDestroyOnLoad(gameObject);
         backgroundSource.clip = background;
         backgroundSource.loop = true;
         backgroundSource.Play();
