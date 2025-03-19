@@ -20,6 +20,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip whoosh;
     public AudioClip squeak;
     public AudioClip drop;
+    public AudioClip lightning;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    
