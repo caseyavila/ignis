@@ -21,11 +21,11 @@ public class OutroManager : MonoBehaviour
 
     IEnumerator Outro()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         Scene2.SetActive(true);
-        yield return new WaitForSeconds(8f);
-        Scene3.SetActive(true);
         yield return new WaitForSeconds(10f);
+        Scene3.SetActive(true);
+        yield return new WaitForSeconds(20f);
         
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Menu");
 
