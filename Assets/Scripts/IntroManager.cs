@@ -19,13 +19,12 @@ public class IntroManager : MonoBehaviour
 
     void Start()
     {
-
         StartCoroutine(Intro());
-        
     }
 
     IEnumerator Intro()
     {
+        audioManager.StartMusic(23f);
         yield return new WaitForSeconds(10f);
         Scene2.SetActive(true);
         audioManager.PlaySFX(audioManager.lightning);
@@ -37,12 +36,13 @@ public class IntroManager : MonoBehaviour
         Scene5.SetActive(true);
         yield return new WaitForSeconds(10f);
         audioManager.PlaySFX(audioManager.ignite);
+        PlayerPrefs.SetInt("SawCutscene", 1);
+        PlayerPrefs.Save();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Menu");
 
     }
 
     IEnumerator MenuScene() {
-        
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Menu");
 
@@ -50,11 +50,4 @@ public class IntroManager : MonoBehaviour
             yield return null;
         }
     }
-
-    IEnumerator Wait(float time) {
-        yield return new WaitForSeconds(time);
-
-    }
-
-
 }

@@ -3969,6 +3969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  levelMenu: {fileID: 1460271439}
 --- !u!1 &1249883820
 GameObject:
   m_ObjectHideFlags: 0
@@ -5458,6 +5459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level 1
+  levelMenu: {fileID: 0}
 --- !u!114 &1628184008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5811,7 +5813,7 @@ MonoBehaviour:
   whoosh: {fileID: 8300000, guid: 8d0c5eb4818a34ec3b48e4d372206c25, type: 3}
   squeak: {fileID: 8300000, guid: a5008e02fd58e469a8448740dd6cbedf, type: 3}
   drop: {fileID: 8300000, guid: 8572a26f33af54fd284404cbb0da1f22, type: 3}
-  lightning: {fileID: 0}
+  lightning: {fileID: 8300000, guid: 6c9b514f6fa8a44efa1a0e4be657daa5, type: 3}
 --- !u!4 &1781796208
 Transform:
   m_ObjectHideFlags: 0
@@ -6324,10 +6326,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1460271439}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1222976308}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

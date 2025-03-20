@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] string sceneName;
+    public GameObject levelMenu;
 
     void Update() {
         if (GetComponent<Image>() == null) {
@@ -17,6 +18,31 @@ public class MainMenu : MonoBehaviour
             GetComponent<Image>().color = new Color32(130, 130, 130, 255);
         } else {
             GetComponent<Image>().color = new Color32(245, 245, 245, 255);
+        }
+    }
+
+    public void Awake() {
+        if (PlayerPrefs.GetInt("SawCutscene", 0) == 1) {
+            levelMenu.SetActive(true);
+            PlayerPrefs.SetInt("SawCutscene", 2);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void PlayButton() {
+        int cutscene = PlayerPrefs.GetInt("SawCutscene", 0);
+        if (cutscene == 0) {
+            StartCoroutine(IntroScene());
+        } else {
+            levelMenu.SetActive(true);
+        }
+    }
+
+    IEnumerator IntroScene() {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Intro Storyboard");
+
+        while (!asyncLoad.isDone) {
+            yield return null;
         }
     }
 

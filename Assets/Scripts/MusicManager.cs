@@ -38,10 +38,13 @@ public class MusicManager : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+
+
         backgroundSource.clip = background;
         backgroundSource.loop = true;
-        StartCoroutine(DelayedMusic());
-        
+        if (PlayerPrefs.GetInt("SawCutscene", 0) > 0) {
+            backgroundSource.Play();
+        }
 
         rainSource.clip = rain;
         rainSource.loop = true;
@@ -58,36 +61,30 @@ public class MusicManager : MonoBehaviour
     
     public void PlaySFX(AudioClip clip)
     {
-
         SFXSource.PlayOneShot(clip);
-
     }
 
     public void PlayQuietSFX(AudioClip clip)
     {
-
         QuietSFXSource.PlayOneShot(clip);
-
     }
 
     public void PlayWind(bool toggle)
     {
-
         if (toggle){
-
             windSource.Play();
-
         }else{
-
             windSource.Stop();
-
         }
-
     }
 
-    IEnumerator DelayedMusic()
+    public void StartMusic(float delay) {
+        StartCoroutine(DelayedMusic(delay));
+    }
+
+    IEnumerator DelayedMusic(float delay)
     {
-        yield return new WaitForSeconds(23f);
+        yield return new WaitForSeconds(delay);
         
         backgroundSource.Play();
         fireSource.Play();

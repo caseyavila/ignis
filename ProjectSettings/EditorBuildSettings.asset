@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 15.unity
     guid: c4199102510aa734bb9e1e86f535e331
   - enabled: 1
+    path: Assets/Scenes/Intro Storyboard.unity
+    guid: 72506b04222ff40b986e9cf1a460eb85
+  - enabled: 1
     path: Assets/Scenes/Outro Storyboard.unity
     guid: c3317146e6b144c6e802c317d7dc92cb
   m_configObjects:
