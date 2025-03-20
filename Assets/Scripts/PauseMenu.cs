@@ -28,7 +28,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Home()
     {
-
+        FlameController.Deaths = 0;
         StartCoroutine(NextScene());
         audioManager.PlaySFX(audioManager.sizzle);
         Time.timeScale = 1;
@@ -38,12 +38,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-
+        FlameController.Deaths = 0;
         StartCoroutine(RestartEnum());
         audioManager.PlaySFX(audioManager.sizzle);
         Time.timeScale = 1;
-
-        
     }
 
 
@@ -54,7 +52,6 @@ public class PauseMenu : MonoBehaviour
         pauseButton.SetActive(true);
         audioManager.PlaySFX(audioManager.ignite);
         Time.timeScale = 1;
-        
     }
 
 

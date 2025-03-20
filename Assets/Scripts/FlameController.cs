@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class FlameController : MonoBehaviour
 {
+    public static int Deaths;
+
     public float flickerSpeed;
     /* If null, flame is an "ember" */
     public GameObject candle;
@@ -79,6 +81,7 @@ public class FlameController : MonoBehaviour
             audioManager.PlaySFX(audioManager.ignite);
 
         }else if (candle == null && other.gameObject.tag == "Fireplace"){
+            Deaths = 0;
             candle = other.gameObject;
             other.gameObject.GetComponent<FireplaceController>().lit = true;
             currentScale = defaultScale;
@@ -227,12 +230,15 @@ public class FlameController : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+
+        Deaths++;
+        Debug.Log(Deaths);
 
         while (!asyncLoad.isDone) {
             yield return null;
         }
+
     }
 }
 
