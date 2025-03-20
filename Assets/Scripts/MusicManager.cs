@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class MusicManager : MonoBehaviour
 {
@@ -38,7 +40,8 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         backgroundSource.clip = background;
         backgroundSource.loop = true;
-        backgroundSource.Play();
+        StartCoroutine(DelayedMusic());
+        
 
         rainSource.clip = rain;
         rainSource.loop = true;
@@ -46,8 +49,7 @@ public class MusicManager : MonoBehaviour
 
         fireSource.clip = fireBackground;
         fireSource.loop = true;
-        fireSource.Play();
-
+        
         windSource.clip = wind;
         windSource.loop = true;
         
@@ -82,6 +84,17 @@ public class MusicManager : MonoBehaviour
         }
 
     }
+
+    IEnumerator DelayedMusic()
+    {
+        yield return new WaitForSeconds(23f);
+        
+        backgroundSource.Play();
+        fireSource.Play();
+
+        
+    }
+
 
 
 

@@ -26,16 +26,17 @@ public class IntroManager : MonoBehaviour
 
     IEnumerator Intro()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         Scene2.SetActive(true);
         audioManager.PlaySFX(audioManager.lightning);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         Scene3.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(9f);
         Scene4.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(15f);
         Scene5.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
+        audioManager.PlaySFX(audioManager.ignite);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Menu");
 
     }
