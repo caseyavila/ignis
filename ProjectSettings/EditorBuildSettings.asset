@@ -53,6 +53,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 15.unity
     guid: c4199102510aa734bb9e1e86f535e331
+  - enabled: 1
+    path: Assets/Scenes/Outro Storyboard.unity
+    guid: c3317146e6b144c6e802c317d7dc92cb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
